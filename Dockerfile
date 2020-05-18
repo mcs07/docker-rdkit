@@ -1,4 +1,4 @@
-FROM debian:buster AS rdkit-build-env
+FROM debian:buster-slim AS rdkit-build-env
 
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
@@ -46,7 +46,7 @@ RUN cmake -Wno-dev \
 RUN make -j $(nproc) \
  && make install
 
-FROM debian:buster AS rdkit-env
+FROM debian:buster-slim AS rdkit-env
 
 # Install runtime dependencies
 RUN apt-get update \
